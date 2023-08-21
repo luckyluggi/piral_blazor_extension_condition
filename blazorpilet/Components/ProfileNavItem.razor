@@ -1,0 +1,28 @@
+@attribute [PiralExtension("Sidebar.Top")]
+@inject NavigationManager _navigationManager
+
+@if (_isVisible)
+{
+    <a href="/user/profile">Profile</a>
+}
+
+@code{
+    bool _isVisible {
+        get => _navigationManager.ToBaseRelativePath(_navigationManager.Uri).StartsWith("user");
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _navigationManager.LocationChanged += LocationChangedHandler;
+    }
+    public void Dispose()
+    {
+        _navigationManager.LocationChanged -= LocationChangedHandler;
+    }
+
+    void LocationChangedHandler(object? s, EventArgs e)
+    {
+        StateHasChanged();
+    }
+}

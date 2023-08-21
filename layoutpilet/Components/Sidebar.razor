@@ -1,0 +1,22 @@
+@attribute [PiralExtension("Sidebar")]
+
+@if (_hasContent)
+{
+    <aside class="sidebar">
+        <div>
+            <Extension Name="Sidebar.Top" />
+        </div>
+        <div>
+        </div>
+    </aside>
+}
+
+@code{
+    bool _hasContent {
+        get
+        {
+            //TODO: return true, if there are Extensions registered for Sidebar.Top. Otherwise return false
+            return true;    
+        }
+    }
+}
